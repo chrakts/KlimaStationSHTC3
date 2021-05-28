@@ -100,9 +100,6 @@
 		<Unit filename="KlimaHardware.h" />
 		<Unit filename="KlimaStationSHTC3.cpp" />
 		<Unit filename="KlimaStationSHTC3.h" />
-		<Unit filename="OneWire.h" />
-		<Unit filename="Wire.cpp" />
-		<Unit filename="Wire.h" />
 		<Unit filename="ledHardware.h" />
 		<Unit filename="myTimers.cpp" />
 		<Unit filename="myTimers.h" />
