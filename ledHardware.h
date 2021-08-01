@@ -1,14 +1,24 @@
 #ifndef LEDHARDWARE_H_INCLUDED
 #define LEDHARDWARE_H_INCLUDED
 
-/* LED auf Basisplatine */
+
+#if BOARD == 2
+/* AtXMega-Modul v01 */
 #define LEDROT_PORT   PORTA
 #define LEDROT_PIN    PIN3_bm
 #define LEDGRUEN_PORT PORTA
 #define LEDGRUEN_PIN  PIN2_bm
 #define LEDBLAU_PORT  PORTA
 #define LEDBLAU_PIN   PIN4_bm
-
+#elif BOARD == 1
+/* AtXMega-Plug v04 */
+#define LEDROT_PORT   PORTA
+#define LEDROT_PIN    PIN2_bm
+#define LEDGRUEN_PORT PORTA
+#define LEDGRUEN_PIN  PIN3_bm
+#define LEDBLAU_PORT  PORTA
+#define LEDBLAU_PIN   PIN4_bm
+#endif // BOARD
 
 #define LEDROTSETUP LEDROT_PORT.DIRSET=LEDROT_PIN
 #define LEDROT_ON   LEDROT_PORT.OUTCLR=LEDROT_PIN

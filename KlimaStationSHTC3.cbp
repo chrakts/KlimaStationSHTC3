@@ -6,7 +6,7 @@
 		<Option pch_mode="2" />
 		<Option compiler="avr-gcc" />
 		<Build>
-			<Target title="KlimaFlur">
+			<Target title="KellerEckig">
 				<Option output="bin/Release/KlimaStationSHTC3.elf" prefix_auto="1" extension_auto="0" />
 				<Option working_dir="" />
 				<Option object_output="obj/Release/" />
@@ -22,15 +22,44 @@
 					<Add option="-DPLL=0" />
 					<Add option="-DCLOCK_CALIBRATION=107" />
 					<Add option="-DNODE_STRING=CF" />
+					<Add option="-DBOARD=2" />
 					<Add directory="./" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
+					<Add option="-mmcu=atxmega128a4u" />
 				</Linker>
+				<Environment>
+					<Variable name="MCU" value="atxmega128a4u" />
+				</Environment>
 			</Target>
-			<Environment>
-				<Variable name="MCU" value="atxmega128a4u" />
-			</Environment>
+			<Target title="KellerFlurRund">
+				<Option output="bin/Release/KlimaStationSHTC3.elf" prefix_auto="1" extension_auto="0" />
+				<Option working_dir="" />
+				<Option object_output="obj/Release/" />
+				<Option type="5" />
+				<Option compiler="avr-gcc" />
+				<Compiler>
+					<Add option="-fomit-frame-pointer" />
+					<Add option="-Os" />
+					<Add option="-Wall" />
+					<Add option="-DNDEBUG" />
+					<Add option="-DF_CPU=32000000UL" />
+					<Add option="-DSYSCLK=CLK32M" />
+					<Add option="-DPLL=0" />
+					<Add option="-DCLOCK_CALIBRATION=107" />
+					<Add option="-DNODE_STRING=CF" />
+					<Add option="-DBOARD=1" />
+					<Add directory="./" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-mmcu=atxmega128a4u" />
+				</Linker>
+				<Environment>
+					<Variable name="MCU" value="atxmega128a4u" />
+				</Environment>
+			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
@@ -56,7 +85,6 @@
 			<Add directory="/home/chrak/Daten/Software/repositories/timer" />
 		</Compiler>
 		<Linker>
-			<Add option="-mmcu=atxmega128a4u" />
 			<Add option="-Wl,-Map=$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).map,--cref" />
 			<Add option="-Wl,-u,vfprintf" />
 			<Add option="-Wl,--gc-sections" />

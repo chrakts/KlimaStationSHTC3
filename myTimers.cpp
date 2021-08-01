@@ -8,8 +8,8 @@
 //10:  99.0 ms
 //101: 1000 ms
 
-volatile TIMER MyTimers[MYTIMER_NUM]= {	{TM_START,RESTART_YES,400,0,nextTemperatureStatus},
-                                        {TM_START,RESTART_YES,actReportBetweenSensors,0,nextReportStatus}
+volatile TIMER MyTimers[MYTIMER_NUM]= {	{TM_START,RESTART_YES,actReportBetweenBlocks,actReportBetweenBlocks,nextTemperatureStatus},
+                                        {TM_START,RESTART_YES,actReportBetweenBlocks,actReportBetweenBlocks,nextReportStatus}
 };
 
 

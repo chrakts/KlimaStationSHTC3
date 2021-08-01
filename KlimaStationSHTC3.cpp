@@ -101,21 +101,27 @@ uint8_t reportStarted = false;
                 LEDGRUEN_ON;
                 sprintf(buffer,"%.1f",(double)fTemperatur);
                 cnet.sendStandard(buffer,BROADCAST,'C','1','t','F');
+                LEDGRUEN_OFF;
             break;
             case HUMIREPORT:
+                LEDGRUEN_ON;
                 sprintf(buffer,"%.1f",(double)fHumidity);
                 cnet.sendStandard(buffer,BROADCAST,'C','1','h','F');
+                LEDGRUEN_OFF;
             break;
             case ABSHUMIREPORT:
+                LEDGRUEN_ON;
                 sprintf(buffer,"%.1f",(double)fAbsHumitdity);
                 cnet.sendStandard(buffer,BROADCAST,'C','1','a','F');
+                LEDGRUEN_OFF;
             break;
             case DEWPOINTREPORT:
+                LEDGRUEN_ON;
                 sprintf(buffer,"%.1f",(double)fDewPoint);
                 cnet.sendStandard(buffer,BROADCAST,'C','1','d','F');
+                LEDGRUEN_OFF;
             break;
             case LASTREPORT:
-                LEDGRUEN_OFF;
                 MyTimers[TIMER_REPORT].value = actReportBetweenBlocks;
                 MyTimers[TIMER_REPORT].state = TM_START;
             break;

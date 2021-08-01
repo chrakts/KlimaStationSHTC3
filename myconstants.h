@@ -9,13 +9,6 @@
 #ifndef MYCONSTANTS_H_
 #define MYCONSTANTS_H_
 
-#define LED_RGB_BLUE  0b10000000
-#define LED_RGB_GREEN 0b01000000
-#define LED_RGB_RED   0b00100000
-#define POWER_3       0b00000100
-#define POWER_2       0b00000010
-#define POWER_1       0b00000001
-
 #define BROADCAST "BR"
 
 #define SENSOR_READY 0
