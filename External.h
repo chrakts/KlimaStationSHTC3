@@ -26,11 +26,17 @@
 #include "twi_master_driver.h"
 #include "shtc3.h"
 #include "myTimers.h"
+#include "ledHardware.h"
 
 extern char const *Node;
 extern char IDNumber[12] EEMEM ;
 extern char SerialNumber[12] EEMEM;
 extern char IndexNumber[2] EEMEM;
+
+#ifdef FENSTER
+extern const char *fensterStatusText[2];
+extern uint8_t fensterStatus[2];
+#endif // FENSTER
 
 extern const char *luefterStatusStrings[];
 
@@ -70,5 +76,9 @@ extern TWI_MasterDriver_t twiC_Master;    /*!< TWI master module. */
 extern TWI_MasterDriver_t twiE_Master;    /*!< TWI master module. */
 
 extern shtc3 humiSensor;
+
+#ifdef FENSTER
+  #include "Fenster.h"
+#endif // FENSTER
 
 #endif /* EXTERNAL_H_ */

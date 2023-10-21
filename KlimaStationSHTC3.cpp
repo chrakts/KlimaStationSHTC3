@@ -15,21 +15,45 @@ void setup()
 
 	PORTB_DIRSET = 0xff;
 
-	PORTC_DIRSET = PIN1_bm;
+	PORTC_DIRCLR = 0xff;
+	PORTC_DIRSET = PIN1_bm; // I2C-Clock
+#ifdef FENSTER
+	PORTC_DIRSET = PIN2_bm | PIN3_bm | PIN4_bm | PIN5_bm;   // PIN6 und 7 sind die Fenstereingänge
+#else
+	PORTC_DIRSET = PIN2_bm | PIN3_bm | PIN4_bm | PIN5_bm | PIN6_bm | PIN7_bm;
+#endif // FENSTER
 
-	PORTD_DIRSET = PIN0_bm | PIN4_bm | PIN5_bm | PIN7_bm;
-	PORTD_DIRCLR = PIN6_bm;
-	PORTD_OUTCLR = PIN4_bm | PIN5_bm;
 
-	PORTE_DIRSET = 0xff;
+	PORTD_DIRCLR = 0xff;
+#if BOARD == 1
+  PORTD_DIRSET = PIN0_bm | PIN1_bm | PIN3_bm | PIN4_bm | PIN5_bm | PIN6_bm | PIN7_bm ;
+#elif BOARD == 2
+  PORTD_DIRSET = 0xff;
+#endif // BOARD
+
+  PORTE_DIRCLR = 0xff;
+#if BOARD == 1
+  PORTE_DIRSET = 0xff;
+#elif BOARD == 2
+  PORTE_DIRSET = PIN0_bm | PIN1_bm | PIN3_bm;
+#endif // BOARD
+
+
   LEDROTSETUP;
   LEDGRUENSETUP;
   LEDBLAUSETUP;
 
+#ifdef FENSTER
+  init_Fenster();
+#endif // FENSTER
 
 	uint8_t i;
 
   TWI_MasterInit(&twiC_Master, &TWIC, TWI_MASTER_INTLVL_LO_gc, TWI_BAUDSETTING);
+
+
+	PMIC_CTRL = PMIC_LOLVLEX_bm | PMIC_HILVLEN_bm | PMIC_MEDLVLEN_bm;
+	sei();
 
 	for(i=0;i<20;i++)
 	{
@@ -38,8 +62,6 @@ void setup()
 	}
   LEDGRUEN_OFF;
 
-	PMIC_CTRL = PMIC_LOLVLEX_bm | PMIC_HILVLEN_bm | PMIC_MEDLVLEN_bm;
-	sei();
 
 	cnet.open(Serial::BAUD_57600,F_CPU);
 }
@@ -121,6 +143,18 @@ uint8_t reportStarted = false;
                 cnet.sendStandard(buffer,BROADCAST,'C','1','d','F');
                 LEDGRUEN_OFF;
             break;
+#ifdef FENSTER
+            case FENSTERREPORT0:
+                LEDGRUEN_ON;
+                cnet.sendStandard(fensterStatusText[fensterStatus[0]],BROADCAST,'F','0','a','F');
+                LEDGRUEN_OFF;
+            break;
+            case FENSTERREPORT1:
+                LEDGRUEN_ON;
+                cnet.sendStandard(fensterStatusText[fensterStatus[1]],BROADCAST,'F','1','a','F');
+                LEDGRUEN_OFF;
+            break;
+#endif // FENSTER
             case LASTREPORT:
                 MyTimers[TIMER_REPORT].value = actReportBetweenBlocks;
                 MyTimers[TIMER_REPORT].state = TM_START;

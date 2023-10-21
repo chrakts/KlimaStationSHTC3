@@ -1,6 +1,9 @@
 #include "myTimers.h"
 #include "ledHardware.h"
 
+#ifdef FENSTER
+#include "Fenster.h"
+#endif // FENSTER
 
 // 1:  9.9  ms
 // 2:  19.8 ms
@@ -10,6 +13,9 @@
 
 volatile TIMER MyTimers[MYTIMER_NUM]= {	{TM_START,RESTART_YES,actReportBetweenBlocks,actReportBetweenBlocks,nextTemperatureStatus},
                                         {TM_START,RESTART_YES,actReportBetweenBlocks,actReportBetweenBlocks,nextReportStatus}
+#ifdef FENSTER
+                                        ,{TM_START,RESTART_NO,20,0,entprelltFenster}
+#endif // FENSTER
 };
 
 
@@ -23,7 +29,6 @@ void led2Blinken(uint8_t test)
 {
 //	LED_KLINGEL_TOGGLE;
 }
-
 
 // NOTHING_CLIMA_TODO ->  START_CONVERSION -> WAIT_CONVERSION -> GET_TEMPERATURE -> NOTHING_CLIMA_TODO
 void nextTemperatureStatus(uint8_t test)

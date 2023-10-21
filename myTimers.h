@@ -13,10 +13,16 @@
 #include "External.h"
 #include "myconstants.h"
 
-#define MYTIMER_NUM	2
+
+#ifdef FENSTER
+  #define MYTIMER_NUM	3
+  void checkFensterStatus(uint8_t test);
+#else
+  #define MYTIMER_NUM	2
+#endif // FENSTER
 
 
-enum{TIMER_TEMPERATURE,TIMER_REPORT,TIMER_SAVE_DELAY};
+enum{TIMER_TEMPERATURE,TIMER_REPORT,TIMER_ENTPRELLT_FENSTER};
 
 
 void nextTemperatureStatus(uint8_t test);

@@ -16,6 +16,7 @@
 					<Add option="-fomit-frame-pointer" />
 					<Add option="-Os" />
 					<Add option="-Wall" />
+					<Add option="-mmcu=atxmega128a4u" />
 					<Add option="-DNDEBUG" />
 					<Add option="-DF_CPU=32000000UL" />
 					<Add option="-DSYSCLK=CLK32M" />
@@ -43,6 +44,7 @@
 					<Add option="-fomit-frame-pointer" />
 					<Add option="-Os" />
 					<Add option="-Wall" />
+					<Add option="-mmcu=atxmega128a4u" />
 					<Add option="-DNDEBUG" />
 					<Add option="-DF_CPU=32000000UL" />
 					<Add option="-DSYSCLK=CLK32M" />
@@ -60,11 +62,39 @@
 					<Variable name="MCU" value="atxmega128a4u" />
 				</Environment>
 			</Target>
+			<Target title="Bad OG mit Fenster">
+				<Option output="bin/Release/KlimaStationSHTC3.elf" prefix_auto="1" extension_auto="0" />
+				<Option working_dir="" />
+				<Option object_output="obj/Release/" />
+				<Option type="5" />
+				<Option compiler="avr-gcc" />
+				<Compiler>
+					<Add option="-fomit-frame-pointer" />
+					<Add option="-Os" />
+					<Add option="-Wall" />
+					<Add option="-mmcu=atxmega32a4u" />
+					<Add option="-DNDEBUG" />
+					<Add option="-DF_CPU=32000000UL" />
+					<Add option="-DSYSCLK=CLK32M" />
+					<Add option="-DPLL=0" />
+					<Add option="-DCLOCK_CALIBRATION=87" />
+					<Add option="-DNODE_STRING=CB" />
+					<Add option="-DBOARD=2" />
+					<Add option="-DFENSTER" />
+					<Add directory="./" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-mmcu=atxmega32a4u" />
+				</Linker>
+				<Environment>
+					<Variable name="MCU" value="atxmega32a4u" />
+				</Environment>
+			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
 			<Add option="-std=c++14" />
-			<Add option="-mmcu=atxmega128a4u" />
 			<Add option="-c -fpermissive" />
 			<Add option="-Wno-enum-compare" />
 			<Add option="-MD -MP -MF" />

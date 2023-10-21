@@ -9,11 +9,25 @@
 #include "KlimaStationSHTC3.h"
 
 #define CF "CF"
+#define CB "CB"
+
+
 
 const char *Node = NODE_STRING;
 char IDNumber[12] EEMEM = "1784324-01";
 char SerialNumber[12] EEMEM = "1958632254";
 char IndexNumber[2] EEMEM = "A";
+
+/*
+#if NODE_STRING == CB
+  const char infoString[]="";
+#endif // NODE_STRING
+*/
+
+#ifdef FENSTER
+const char *fensterStatusText[2]={"zu","offen"};
+uint8_t fensterStatus[2] = {0, 0};
+#endif // FENSTER
 
 uint16_t actReportBetweenBlocks  = REPORT_BETWEEN_BLOCKS;
 uint16_t actReportBetweenSensors = REPORT_BETWEEN_SENSORS;
