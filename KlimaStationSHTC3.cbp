@@ -77,7 +77,7 @@
 					<Add option="-DF_CPU=32000000UL" />
 					<Add option="-DSYSCLK=CLK32M" />
 					<Add option="-DPLL=0" />
-					<Add option="-DCLOCK_CALIBRATION=87" />
+					<Add option="-DCLOCK_CALIBRATION=83" />
 					<Add option="-DNODE_STRING=CB" />
 					<Add option="-DBOARD=2" />
 					<Add option="-DFENSTER" />
@@ -154,6 +154,8 @@
 		<Unit filename="CommandFunctions.cpp" />
 		<Unit filename="CommandFunctions.h" />
 		<Unit filename="External.h" />
+		<Unit filename="Fenster.cpp" />
+		<Unit filename="Fenster.h" />
 		<Unit filename="Globals.cpp" />
 		<Unit filename="KlimaHardware.h" />
 		<Unit filename="KlimaStationSHTC3.cpp" />
