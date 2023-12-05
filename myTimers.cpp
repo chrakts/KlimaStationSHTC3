@@ -12,7 +12,8 @@
 //101: 1000 ms
 
 volatile TIMER MyTimers[MYTIMER_NUM]= {	{TM_START,RESTART_YES,actReportBetweenBlocks,actReportBetweenBlocks,nextTemperatureStatus},
-                                        {TM_START,RESTART_YES,actReportBetweenBlocks,actReportBetweenBlocks,nextReportStatus}
+                                        {TM_START,RESTART_YES,actReportBetweenBlocks,actReportBetweenBlocks,nextReportStatus},
+                                        {TM_STOP,RESTART_NO,5000,0,nowSaveEEProm}
 #ifdef FENSTER
                                         ,{TM_START,RESTART_NO,20,0,entprelltFenster}
 #endif // FENSTER
@@ -61,13 +62,18 @@ void nextTemperatureStatus(uint8_t test)
 
 }
 
-
 void nextReportStatus(uint8_t test)
 {
 	sendStatusReport = true;
 	statusReport+=1;
 	if( statusReport > LASTREPORT )
         statusReport = TEMPREPORT;
+}
+
+void nowSaveEEProm(uint8_t test)
+{
+  setStatusToEEProm(&actualStatus,0);
+  LEDBLAU_OFF;
 }
 
 

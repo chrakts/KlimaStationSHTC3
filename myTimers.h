@@ -15,18 +15,19 @@
 
 
 #ifdef FENSTER
-  #define MYTIMER_NUM	3
+  #define MYTIMER_NUM	4
   void checkFensterStatus(uint8_t test);
 #else
-  #define MYTIMER_NUM	2
+  #define MYTIMER_NUM	3
 #endif // FENSTER
 
 
-enum{TIMER_TEMPERATURE,TIMER_REPORT,TIMER_ENTPRELLT_FENSTER};
+enum{TIMER_TEMPERATURE,TIMER_REPORT,TIMER_SAVE_DELAY,TIMER_ENTPRELLT_FENSTER};
 
 
 void nextTemperatureStatus(uint8_t test);
 void nextReportStatus(uint8_t test);
+void nowSaveEEProm(uint8_t test);
 
 extern volatile TIMER MyTimers[MYTIMER_NUM];
 

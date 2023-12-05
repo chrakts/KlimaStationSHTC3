@@ -119,8 +119,9 @@ void jobGetCDewPointSensor(ComReceiver *comRec, char function,char address,char 
 
 void jobSetDimmerStatus(ComReceiver *comRec, char function,char address,char job, void * pMem)
 {
-  actualStatus.dimmer[0] = ( (uint8_t*) pMem )[0];
+  setDimmer(0 ,( (uint8_t*) pMem )[0]);
   updateDimStatus();
+  writeEEData();
 	//comRec->sendAnswer(answer,function,address,job,true);
 }
 
@@ -128,6 +129,7 @@ void jobIncreaseDimmerStatus(ComReceiver *comRec, char function,char address,cha
 {
   increaseDimmer(0);
   updateDimStatus();
+  writeEEData();
 	//comRec->sendAnswer(answer,function,address,job,true);
 }
 
@@ -135,6 +137,7 @@ void jobDecreaseDimmerStatus(ComReceiver *comRec, char function,char address,cha
 {
   decreaseDimmer(0);
   updateDimStatus();
+  writeEEData();
 	//comRec->sendAnswer(answer,function,address,job,true);
 }
 

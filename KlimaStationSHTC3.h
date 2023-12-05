@@ -36,6 +36,6 @@
 uint8_t doLastSensor();
 uint8_t doClima();
 void setup_twi();
-
+void writeEEData();
 
 #endif /* LUEFTERSTEUERUNG_H_ */
