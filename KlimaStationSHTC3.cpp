@@ -49,6 +49,12 @@ void setup()
 
 	uint8_t i;
 
+#ifdef DIMMERA
+  initDimmer();
+  initDimmerStatus();
+  updateDimmer();
+#endif // DIMMERA
+
   TWI_MasterInit(&twiC_Master, &TWIC, TWI_MASTER_INTLVL_LO_gc, TWI_BAUDSETTING);
 
 
@@ -155,6 +161,13 @@ uint8_t reportStarted = false;
                 LEDGRUEN_OFF;
             break;
 #endif // FENSTER
+#ifdef DIMMERA
+            case DIMMERREPORTA:
+                LEDGRUEN_ON;
+                sendDimStatus(0, actualStatus.dimmer[0]);
+                LEDGRUEN_OFF;
+            break;
+#endif // DIMMERA
             case LASTREPORT:
                 MyTimers[TIMER_REPORT].value = actReportBetweenBlocks;
                 MyTimers[TIMER_REPORT].state = TM_START;

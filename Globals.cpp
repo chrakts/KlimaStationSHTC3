@@ -59,3 +59,8 @@ TWI_MasterDriver_t twiE_Master;    /*!< TWI master module. */
 
 shtc3 humiSensor;
 
+#ifdef DIMMERA
+  LAMP_STATUS actualStatus,oldStatus,lastUpdateStatus;
+  const  LAMP_STATUS backupStatus PROGMEM = {1,{243},146};
+  LAMP_STATUS saveStatus[2] EEMEM= {  {1,{254},146},{2,{254},252}  };
+#endif

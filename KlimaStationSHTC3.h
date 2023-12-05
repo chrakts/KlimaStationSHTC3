@@ -28,6 +28,10 @@
 #include "KlimaHardware.h"
 #include "shtc3.h"
 #include "ledHardware.h"
+#ifdef DIMMERA
+  #include "dimmer.h"
+  #include "dimmerHardware.h"
+#endif // DIMMERA
 
 uint8_t doLastSensor();
 uint8_t doClima();

@@ -23,6 +23,9 @@ COMMAND cnetCommands[NUM_COMMANDS] =
 		{'C','h',CUSTOMER,NOPARAMETER,0,jobGetCHumiditySensor},
 		{'C','d',CUSTOMER,NOPARAMETER,0,jobGetCDewPointSensor},
 		{'C','a',CUSTOMER,NOPARAMETER,0,jobGetCAbsHumiditySensor},
+		{'D','S',CUSTOMER,UINT_8,1,jobSetDimmerStatus},
+		{'D','+',CUSTOMER,NOPARAMETER,0,jobIncreaseDimmerStatus},
+		{'D','-',CUSTOMER,NOPARAMETER,0,jobDecreaseDimmerStatus},
 		{'T','B',CUSTOMER,UINT_16,1,jobSetTimeBetweenBlocks},
 		{'T','S',CUSTOMER,UINT_16,1,jobSetTimeBetweenSensors},
 		{'T','W',CUSTOMER,UINT_16,1,jobWaitAfterLastSensor}
@@ -112,6 +115,27 @@ void jobGetCDewPointSensor(ComReceiver *comRec, char function,char address,char 
 
 	sprintf(answer,"%f",(double)fDewPoint);
 	comRec->sendAnswer(answer,function,address,job,true);
+}
+
+void jobSetDimmerStatus(ComReceiver *comRec, char function,char address,char job, void * pMem)
+{
+  actualStatus.dimmer[0] = ( (uint8_t*) pMem )[0];
+  updateDimStatus();
+	//comRec->sendAnswer(answer,function,address,job,true);
+}
+
+void jobIncreaseDimmerStatus(ComReceiver *comRec, char function,char address,char job, void * pMem)
+{
+  increaseDimmer(0);
+  updateDimStatus();
+	//comRec->sendAnswer(answer,function,address,job,true);
+}
+
+void jobDecreaseDimmerStatus(ComReceiver *comRec, char function,char address,char job, void * pMem)
+{
+  decreaseDimmer(0);
+  updateDimStatus();
+	//comRec->sendAnswer(answer,function,address,job,true);
 }
 
 void jobSetTimeBetweenBlocks(ComReceiver *comRec, char function,char address,char job, void * pMem)

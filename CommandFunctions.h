@@ -12,7 +12,7 @@
 #include "KlimaStationSHTC3.h"
 extern COMMAND cnetCommands[];
 
-#define NUM_COMMANDS 13+CMULTI_STANDARD_NUM
+#define NUM_COMMANDS 16+CMULTI_STANDARD_NUM
 
 void jobGetCTemperatureSensor(ComReceiver *comRec, char function,char address,char job, void * pMem);
 void jobGetCHumiditySensor(ComReceiver *comRec, char function,char address,char job, void * pMem);
@@ -34,5 +34,8 @@ void jobGetIndex(ComReceiver *comRec, char function,char address,char job, void 
 void jobSetIDNumber(ComReceiver *comRec, char function,char address,char job, void * pMem);
 void jobSetSerialNumber(ComReceiver *comRec, char function,char address,char job, void * pMem);
 void jobSetIndexNumber(ComReceiver *comRec, char function,char address,char job, void * pMem);
+void jobSetDimmerStatus(ComReceiver *comRec, char function,char address,char job, void * pMem);
+void jobIncreaseDimmerStatus(ComReceiver *comRec, char function,char address,char job, void * pMem);
+void jobDecreaseDimmerStatus(ComReceiver *comRec, char function,char address,char job, void * pMem);
 
 #endif /* COMMANDFUNCTIONS_H_ */

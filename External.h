@@ -27,6 +27,7 @@
 #include "shtc3.h"
 #include "myTimers.h"
 #include "ledHardware.h"
+#include "dimmer.h"
 
 extern char const *Node;
 extern char IDNumber[12] EEMEM ;
@@ -76,6 +77,12 @@ extern TWI_MasterDriver_t twiC_Master;    /*!< TWI master module. */
 extern TWI_MasterDriver_t twiE_Master;    /*!< TWI master module. */
 
 extern shtc3 humiSensor;
+
+#ifdef DIMMERA
+  extern LAMP_STATUS actualStatus,oldStatus,lastUpdateStatus;
+  extern PROGMEM const  LAMP_STATUS backupStatus ;
+  extern EEMEM LAMP_STATUS saveStatus[2] ;
+#endif
 
 #ifdef FENSTER
   #include "Fenster.h"
