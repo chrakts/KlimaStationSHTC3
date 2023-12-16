@@ -10,10 +10,10 @@
 #define DIMMER_STEP 2
 
 #ifdef DIMMERA
-  #define DIMA_COUNT CCBL
-  #define DIMA_ENABLE TC0_CCAEN_bm  // TC0_CCAEN_bm = PIN0 ...: muss zur nachfolgenden Definition passen.
+  #define DIMA_COUNT CCDL
+  #define DIMA_ENABLE TC0_CCDEN_bm  // TC0_CCAEN_bm = PIN0 ...: muss zur nachfolgenden Definition passen.
   #define DIMA_PORT  PORTD          // definiert den PWM-Dimmer
-  #define DIMA_PIN   PIN0
+  #define DIMA_PIN   PIN3
   #define SWA_PORT   PORTD          // definiert den Ein-Aus-Schalter
   #define SWA_PIN    PIN1
 #else
