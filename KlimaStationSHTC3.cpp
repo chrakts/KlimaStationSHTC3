@@ -30,7 +30,7 @@ void setup()
 #elif BOARD == 2
   PORTD_DIRSET = 0xff;
 #endif // BOARD
-
+  PORTD_DIRSET = 0xff;
   PORTE_DIRCLR = 0xff;
 #if BOARD == 1
   PORTE_DIRSET = 0xff;
@@ -91,6 +91,9 @@ uint8_t reportStarted = false;
 
 	while (1)
 	{
+#ifdef DIMMERA
+    updateDimmer();
+#endif // DIMMERA
 		cnetRec.comStateMachine();
 		cnetRec.doJob();
 
