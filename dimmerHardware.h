@@ -6,7 +6,7 @@
 #define DIM_TIMER  TCD0
 #define DIM_CLOCK  TC_CLKSEL_DIV64_gc
 
-#define DIMMER_MIN_STATE 50
+#define DIMMER_MIN_STATE 0
 #define DIMMER_STEP 2
 
 #ifdef DIMMERA
